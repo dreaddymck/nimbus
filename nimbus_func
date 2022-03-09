@@ -1,0 +1,125 @@
+#!/bin/bash
+
+usage_menu(){
+    
+    printf "%$((-${COLLUMN0} + ${COLLUMN1}))s\n" "Usage: nimbus action parameter" 
+    printf "%$((${COLLUMN0} + ${COLLUMN1}))s\n" " " | tr ' ' '-'
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "Action" "Description"
+    printf "%$((${COLLUMN0} + ${COLLUMN1}))s\n" " " | tr ' ' '-'
+    for data in ${!data@}; do
+        printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "${data[action]}" "${data[desc]}"
+    done
+    printf "%$((-${COLLUMN0} + ${COLLUMN1}))s\n" "(ctrl+c|exit|quit)" 
+    input   
+}
+input(){
+    read -p "action : " input
+    if [ ! -z "$input" ]; then
+        if [[ "$input" =~ ^(exit|quit)$ ]]; then
+            exit 0
+        fi 
+        ./$0 $input
+        exit 0
+    fi   
+    input
+}
+activities(){
+    for data in ${!data@}; do
+        if [ "$1" == "${data[action]}" ]; then
+            printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "${data[action]}" "${data[desc]}"
+            ${data[func]} $2
+            break
+        fi
+    done 
+    input   
+}
+home(){
+    activator send libactivator.system.homebutton
+    echo Home button press simulated.
+}
+powerdown(){
+    activator send libactivator.system.powerdown
+    echo Device powered off.
+}
+sleep(){
+    activator send libactivator.system.sleepbutton
+    echo Power button press simulated.
+}
+open(){
+    activator send $2
+    echo App opened.
+}
+settings(){
+    activator send libactivator.settings.$2
+    echo Preference page opened.
+}
+cc(){
+    activator send libactivator.system.activate-control-center
+    echo Control Center opened.
+}
+screenshot(){
+    activator send libactivator.system.take-screenshot
+    echo Screenshot saved in gallery.
+}
+increase_audio(){
+    activator send libactivator.audio.increase-volume
+    echo Volume increased.
+}
+decrease_audio(){
+    activator send libactivator.audio.decrease-volume
+    echo Brightness decreased.
+}
+decrease_brightness(){
+    activator send libactivator.screen.brightness.decrease
+    echo Brightness decreased.
+}
+increase_brightness(){
+    activator send libactivator.screen.brightness.increase
+    echo Volume increased.
+}
+switcher(){
+    activator send libactivator.system.activate-switcher
+    echo Switcher activated.
+}
+clear_switcher(){
+    activator send libactivator.system.clear-switcher
+    echo App Switcher cleared.
+}
+nc(){
+    activator send libactivator.system.activate-notification-center
+    echo Notification Center opened.
+}
+answer_call(){
+    activator send libactivator.phone.answer-call
+    echo Call answered.
+}
+decline_call(){
+    activator send libactivator.phone.disconnect-call
+    echo Call declined.
+}
+first_homepage(){
+    activator send libactivator.system.first-springboard-page
+    echo First homescreen page opened.
+}
+power_menu(){
+    activator send libactivator.system.power-menu
+    echo Power menu opened.
+}
+siri(){
+    activator send libactivator.system.virtual-assistant
+    echo Siri opened.
+}
+spotlight(){
+    activator send libactivator.system.spotlight
+    echo Spotlight opened.
+}
+safe_mode(){
+    activator send libactivator.system.safemode
+    echo Safe mode activated.
+}
+unlock(){
+    activator activate libactivator.statusbar.swipe.left libactivator.lockscreen.dismiss
+    echo system unlock attempted.
+}
+
+

@@ -1,0 +1,102 @@
+#!/bin/bash
+
+COLLUMN0=30
+COLLUMN1=50
+
+unset data
+
+declare -A data_0=(
+    [action]='home'
+    [desc]="Tap home button"
+    [func]=home
+)
+declare -A data_1=(
+    [action]="powerdown"
+    [desc]="Power off device"
+    [func]=powerdown
+)
+declare -A data_2=(
+    [action]="sleep"
+    [desc]="Simulate power button press"
+    [func]=sleep
+)
+declare -A data_3=(
+    [action]="safe-mode"
+    [desc]="launch springboard in safe mode"
+    [func]=safe_mode
+)
+declare -A data_4=(
+    [action]="switcher"
+    [desc]="launch app switcher"
+    [func]=switcher
+)
+declare -A data_5=(
+    [action]="clear-switcher"
+    [desc]="clear app switcher"
+    [func]=clear_switcher
+)
+declare -A data_6=(
+    [action]="open app.bundle.id"
+    [desc]="open specified app.bundle.id"
+    [func]=open
+)
+declare -A data_7=(
+    [action]="first-homepage"
+    [desc]="launch first srpingboard page."
+    [func]=first_homepage
+)
+declare -A data_8=(
+    [action]="spotlight"
+    [desc]="launch Spotlight."
+    [func]=first_homepage
+)
+declare -A data_9=(
+    [action]="screenshot"
+    [desc]="make a screenshot."
+    [func]=screenshot
+)
+declare -A data_10=(
+    [action]="increase (audio|brightness)"
+    [desc]="increase audio or brightness."
+    [func]=increase
+)
+declare -A data_11=(
+    [action]="decrease (audio|brightness)"
+    [desc]="decrease audio or brightness."
+    [func]=decrease
+)
+declare -A data_12=(
+    [action]="call (answer|decline)"
+    [desc]="answer or decline a call."
+    [func]=call
+)
+declare -A data_13=(
+    [action]="settings 'name of panel'"
+    [desc]="launch settings preference"
+    [func]=settings
+)
+declare -A data_14=(
+    [action]="nc"
+    [desc]="launch notification center"
+    [func]=nc
+)
+declare -A data_15=(
+    [action]="cc"
+    [desc]="launch control center."
+    [func]=cc
+)
+declare -A data_16=(
+    [action]="siri"
+    [desc]="launch siri"
+    [func]=siri
+)
+declare -A data_17=(
+    [action]="unlock"
+    [desc]="Unlocks unprotected interface"
+    [func]=unlock
+)
+
+
+
+declare -n data
+
