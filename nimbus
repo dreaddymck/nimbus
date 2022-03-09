@@ -1,16 +1,152 @@
 #!/bin/bash
 #
 # nimbus revised
-# bash 4
+# Controll jailbroken iDevices from SSH. Activator installation required.
 
-source ./nimbus_func
-source ./nimbus_data
-
+home(){
+    activator send libactivator.system.homebutton
+    echo Home button press simulated.
+}
+powerdown(){
+    activator send libactivator.system.powerdown
+    echo Device powered off.
+}
+sleep(){
+    activator send libactivator.system.sleepbutton
+    echo Power button press simulated.
+}
+open(){
+    activator send $2
+    echo App opened.
+}
+settings(){
+    activator send libactivator.settings.$2
+    echo Preference page opened.
+}
+cc(){
+    activator send libactivator.system.activate-control-center
+    echo Control Center opened.
+}
+screenshot(){
+    activator send libactivator.system.take-screenshot
+    echo Screenshot saved in gallery.
+}
+increase_audio(){
+    activator send libactivator.audio.increase-volume
+    echo Volume increased.
+}
+decrease_audio(){
+    activator send libactivator.audio.decrease-volume
+    echo Brightness decreased.
+}
+decrease_brightness(){
+    activator send libactivator.screen.brightness.decrease
+    echo Brightness decreased.
+}
+increase_brightness(){
+    activator send libactivator.screen.brightness.increase
+    echo Volume increased.
+}
+switcher(){
+    activator send libactivator.system.activate-switcher
+    echo Switcher activated.
+}
+clear_switcher(){
+    activator send libactivator.system.clear-switcher
+    echo App Switcher cleared.
+}
+nc(){
+    activator send libactivator.system.activate-notification-center
+    echo Notification Center opened.
+}
+answer_call(){
+    activator send libactivator.phone.answer-call
+    echo Call answered.
+}
+decline_call(){
+    activator send libactivator.phone.disconnect-call
+    echo Call declined.
+}
+first_homepage(){
+    activator send libactivator.system.first-springboard-page
+    echo First homescreen page opened.
+}
+power_menu(){
+    activator send libactivator.system.power-menu
+    echo Power menu opened.
+}
+siri(){
+    activator send libactivator.system.virtual-assistant
+    echo Siri opened.
+}
+spotlight(){
+    activator send libactivator.system.spotlight
+    echo Spotlight opened.
+}
+safe_mode(){
+    activator send libactivator.system.safemode
+    echo Safe mode activated.
+}
+unlock(){
+    activator activate libactivator.statusbar.swipe.left libactivator.lockscreen.dismiss
+    echo system unlock attempted.
+}
+battery(){
+    powerlog -Bq  
+}
+input(){
+    read -p "action : " input
+    if [ ! -z "$input" ]; then
+        if [[ "$input" =~ ^(exit|quit)$ ]]; then
+            exit 0
+        fi 
+        $0 $input
+        exit 0
+    fi   
+    input
+}
+activities(){
+    $1 $2
+    input   
+}
 if [ -z "$1" ]; then
-    usage_menu
+
+    COLLUMN0=30
+    COLLUMN1=50
+    printf "%$((-${COLLUMN0} + ${COLLUMN1}))s\n" "Usage: nimbus action parameter" 
+    printf "%$((${COLLUMN0} + ${COLLUMN1}))s\n" " " | tr ' ' '-'
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "Action" "Description"
+    printf "%$((${COLLUMN0} + ${COLLUMN1}))s\n" " " | tr ' ' '-'
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "home" "Tap home button"
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "powerdown" "Power off device"
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "sleep" "Simulate power button press"
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "safe-mode" "launch springboard in safe mode"
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "switcher" "launch app switcher"
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "clear-switcher" "clear app switcher"
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "open app.bundle.id" "launch specified app.bundle.id"
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "first-homepage" "launch first srpingboard page."
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "spotlight" "launch Spotlight."
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "screenshot" "make a screenshot."
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "increase (audio|brightness)" "increase audio or brightness."
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "decrease (audio|brightness)" "decrease audio or brightness."
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "call (answer|decline)" "answer or decline a call."
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "settings 'name of panel'" "launch settings preference"
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "nc" "launch notification center"
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "cc" "launch control center."
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "siri" "launch siri"
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "unlock" "Unlocks unprotected interface"
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "battery" "Display battery information"
+    printf "%$((-${COLLUMN0} + ${COLLUMN1}))s\n" "(ctrl+c|exit|quit)" 
+
+    input
+
 else
-    activities $1
+    activities $1 $2
 fi
+
+
+
+
 
 exit 0
 
