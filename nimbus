@@ -136,7 +136,9 @@ if [ -z "$1" ]; then
     printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "siri" "launch siri"
     printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "unlock" "Unlocks unprotected interface"
     printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "battery" "Display battery information"
+    printf "%$((${COLLUMN0} + ${COLLUMN1}))s\n" " " | tr ' ' '-'
     printf "%$((-${COLLUMN0} + ${COLLUMN1}))s\n" "(ctrl+c|exit|quit)" 
+    printf "%$((${COLLUMN0} + ${COLLUMN1}))s\n" " " | tr ' ' '-'
 
     input
 
