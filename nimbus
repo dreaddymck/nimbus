@@ -18,7 +18,7 @@ if [[ -f "$CUSTOMNIMBNUS" ]]; then
 fi
 home(){
     activator send libactivator.system.homebutton
-    echo Home button press simulated.
+    echo Home button.
 }
 powerdown(){
     activator send libactivator.system.powerdown
@@ -26,7 +26,7 @@ powerdown(){
 }
 sleep(){
     activator send libactivator.system.sleepbutton
-    echo Power button press simulated.
+    echo Power button.
 }
 open(){
     activator send $2
@@ -34,23 +34,23 @@ open(){
 }
 settings(){
     activator send libactivator.settings.$2
-    echo Preference page opened.
+    echo Preference page.
 }
 cc(){
     activator send libactivator.system.activate-control-center
-    echo Control Center opened.
+    echo Control Center.
 }
 screenshot(){
     activator send libactivator.system.take-screenshot
-    echo Screenshot saved in gallery.
+    echo Screenshot saved to gallery.
 }
 increase_audio(){
     activator send libactivator.audio.increase-volume
-    echo Volume increased.
+    echo Audio increased.
 }
 decrease_audio(){
     activator send libactivator.audio.decrease-volume
-    echo Brightness decreased.
+    echo Audio decreased.
 }
 decrease_brightness(){
     activator send libactivator.screen.brightness.decrease
@@ -58,7 +58,7 @@ decrease_brightness(){
 }
 increase_brightness(){
     activator send libactivator.screen.brightness.increase
-    echo Volume increased.
+    echo Brightness increased.
 }
 switcher(){
     activator send libactivator.system.activate-switcher
@@ -66,11 +66,11 @@ switcher(){
 }
 clear_switcher(){
     activator send libactivator.system.clear-switcher
-    echo App Switcher cleared.
+    echo App switcher cleared.
 }
 nc(){
     activator send libactivator.system.activate-notification-center
-    echo Notification Center opened.
+    echo Notification center opened.
 }
 answer_call(){
     activator send libactivator.phone.answer-call
@@ -82,27 +82,27 @@ decline_call(){
 }
 first_homepage(){
     activator send libactivator.system.first-springboard-page
-    echo First homescreen page opened.
+    echo homescreen.
 }
 power_menu(){
     activator send libactivator.system.power-menu
-    echo Power menu opened.
+    echo Power menu.
 }
 siri(){
     activator send libactivator.system.virtual-assistant
-    echo Siri opened.
+    echo Siri.
 }
 spotlight(){
     activator send libactivator.system.spotlight
-    echo Spotlight opened.
+    echo Spotlight.
 }
 safe_mode(){
     activator send libactivator.system.safemode
-    echo Safe mode activated.
+    echo Safe mode.
 }
 unlock(){
     activator send libactivator.lockscreen.dismiss
-    echo system unlock attempted.
+    echo system unlocked.
 }
 battery(){
     powerlog -Bq  
