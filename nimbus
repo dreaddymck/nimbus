@@ -1,7 +1,21 @@
 #!/bin/bash
-#
 # nimbus revised
-# Controll jailbroken iDevices from SSH. Activator installation required.
+# ------------------------------------------------------------
+# include custom nimbus action with .nimbus in home directory
+# ------------------------------------------------------------
+# example_function(){
+# }
+# # prints custom menu entries
+# nimbus_usage_menu(){
+#     printf "%$((${COLLUMN0} + ${COLLUMN1}))s\n" " " | tr ' ' '-'
+#     printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "example_function" "example menu description"
+# }
+#
+#
+CUSTOMNIMBNUS=~/.nimbus
+if [[ -f "$CUSTOMNIMBNUS" ]]; then
+    source ~/.nimbus
+fi
 
 home(){
     activator send libactivator.system.homebutton
@@ -88,11 +102,15 @@ safe_mode(){
     echo Safe mode activated.
 }
 unlock(){
-    activator activate libactivator.statusbar.swipe.left libactivator.lockscreen.dismiss
+    activator send libactivator.lockscreen.dismiss
     echo system unlock attempted.
 }
 battery(){
     powerlog -Bq  
+}
+
+listpkg(){
+    dpkg -l | more
 }
 input(){
     read -p "action : " input
@@ -113,6 +131,7 @@ if [ -z "$1" ]; then
 
     COLLUMN0=30
     COLLUMN1=50
+    printf "\n"
     printf "%$((-${COLLUMN0} + ${COLLUMN1}))s\n" "Usage: nimbus action parameter" 
     printf "%$((${COLLUMN0} + ${COLLUMN1}))s\n" " " | tr ' ' '-'
     printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "Action" "Description"
@@ -136,6 +155,11 @@ if [ -z "$1" ]; then
     printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "siri" "launch siri"
     printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "unlock" "Unlocks unprotected interface"
     printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "battery" "Display battery information"
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "listpkg" "list installed packages"
+
+    if [[ $(type -t nimbus_usage_menu) == function ]]; then
+        nimbus_usage_menu
+    fi
     printf "%$((${COLLUMN0} + ${COLLUMN1}))s\n" " " | tr ' ' '-'
     printf "%$((-${COLLUMN0} + ${COLLUMN1}))s\n" "(ctrl+c|exit|quit)" 
     printf "%$((${COLLUMN0} + ${COLLUMN1}))s\n" " " | tr ' ' '-'
@@ -145,10 +169,6 @@ if [ -z "$1" ]; then
 else
     activities $1 $2
 fi
-
-
-
-
 
 exit 0
 
