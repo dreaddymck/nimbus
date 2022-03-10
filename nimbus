@@ -1,12 +1,17 @@
 #!/bin/bash
 # nimbus revised
+# Version:
 # ------------------------------------------------------------
-# include custom nimbus action with .nimbus in home directory
+# override default nimbus menu display by 
+# adding a .nimbus file in home directory.
+# See example:
 # ------------------------------------------------------------
 # example_function(){
 # }
-# # prints custom menu entries
-# nimbus_usage_menu(){
+#
+# # nimbus_custom_menu() is a Required function
+#
+# nimbus_custom_menu(){
 #     printf "%$((${COLLUMN0} + ${COLLUMN1}))s\n" " " | tr ' ' '-'
 #     printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "example_function" "example menu description"
 # }
@@ -145,29 +150,30 @@ if [ -z "$1" ]; then
     printf "%$((${COLLUMN0} + ${COLLUMN1}))s\n" " " | tr ' ' '-'
     printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "Action" "Description"
     printf "%$((${COLLUMN0} + ${COLLUMN1}))s\n" " " | tr ' ' '-'
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "home" "tap home button"
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "powerdown" "power off device"
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "sleep" "simulate power button press"
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "safe_mode" "launch springboard in safe mode"
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "open app.bundle.id" "launch specified app.bundle.id"
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "first_homepage" "launch first srpingboard page."
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "spotlight" "launch Spotlight."
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "settings 'name of panel'" "launch settings preference"
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "power_menu" "launch power menu"
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "nc" "launch notification center"
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "cc" "launch control center."
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "siri" "launch siri"
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "switcher" "launch app switcher"
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "clear_switcher" "clear app switcher"
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "screenshot" "make a screenshot."
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "increase_(audio|brightness)" "increase audio or brightness."
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "decrease_(audio|brightness)" "decrease audio or brightness."
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "(answer|decline)_call" "answer or decline a call."    
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "unlock" "unlocks unprotected interface"
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "battery" "display battery information"
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "listpkg" "list installed packages"
-    if [[ $(type -t nimbus_usage_menu) == function ]]; then
-        nimbus_usage_menu
+    if [[ $(type -t nimbus_custom_menu) == function ]]; then
+        nimbus_custom_menu
+    else
+        printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "home" "tap home button"
+        printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "powerdown" "power off device"
+        printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "sleep" "simulate power button press"
+        printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "safe_mode" "launch springboard in safe mode"
+        printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "open app.bundle.id" "launch specified app.bundle.id"
+        printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "first_homepage" "launch first srpingboard page."
+        printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "spotlight" "launch Spotlight."
+        printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "settings 'name of panel'" "launch settings preference"
+        printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "power_menu" "launch power menu"
+        printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "nc" "launch notification center"
+        printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "cc" "launch control center."
+        printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "siri" "launch siri"
+        printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "switcher" "launch app switcher"
+        printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "clear_switcher" "clear app switcher"
+        printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "screenshot" "make a screenshot."
+        printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "increase_(audio|brightness)" "increase audio or brightness."
+        printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "decrease_(audio|brightness)" "decrease audio or brightness."
+        printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "(answer|decline)_call" "answer or decline a call."    
+        printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "unlock" "unlocks unprotected interface"
+        printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "battery" "display battery information"
+        printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "listpkg" "list installed packages"    
     fi
     printf "%$((${COLLUMN0} + ${COLLUMN1}))s\n" " " | tr ' ' '-'
     printf "%$((-${COLLUMN0} + ${COLLUMN1}))s\n" "ctrl+c|exit|quit" 
