@@ -125,9 +125,21 @@ activities(){
     $1 $2
     input   
 }
+banner(){
+cat << EOF
+
+_  _ _ _  _ ___  _  _ ____    ___  _  _ ____ _  _ 
+|\ | | |\/| |__] |  | [__     |  \ |\/| |    |_/  
+| \| | |  | |__] |__| ___]    |__/ |  | |___ | \_ 
+                                                  
+
+EOF
+
+}
 if [ -z "$1" ]; then
     COLLUMN0=30
     COLLUMN1=50
+    banner
     printf "\n"
     printf "%$((-${COLLUMN0} + ${COLLUMN1}))s\n" "Usage: nimbus action parameter" 
     printf "%$((${COLLUMN0} + ${COLLUMN1}))s\n" " " | tr ' ' '-'
