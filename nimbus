@@ -2,20 +2,6 @@
 # nimbus revised
 # Version:
 # ------------------------------------------------------------
-# override default nimbus menu display by 
-# adding a .nimbus file in home directory.
-# See example:
-# ------------------------------------------------------------
-# example_function(){
-# }
-#
-# # nimbus_custom_menu() is a Required function
-#
-# nimbus_custom_menu(){
-#     printf "%$((${COLLUMN0} + ${COLLUMN1}))s\n" " " | tr ' ' '-'
-#     printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "example_function" "example menu description"
-# }
-#
 #
 CUSTOMNIMBNUS=~/.nimbus
 if [[ -f "$CUSTOMNIMBNUS" ]]; then
@@ -171,7 +157,7 @@ if [ -z "$1" ]; then
         printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "increase_(audio|brightness)" "increase audio or brightness."
         printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "decrease_(audio|brightness)" "decrease audio or brightness."
         printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "(answer|decline)_call" "answer or decline a call."    
-        printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "unlock" "unlocks unprotected interface"
+        printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "unlock" "unlocks interface"
         printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "battery" "display battery information"
         printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "listpkg" "list installed packages"    
     fi
