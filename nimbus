@@ -116,7 +116,7 @@ input(){
         if [[ "$input" =~ ^(exit|quit)$ ]]; then
             exit 0
         fi 
-        $0 $input
+        activities $input
         exit 0
     fi   
     input
