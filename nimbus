@@ -1,8 +1,9 @@
 #!/bin/bash
 # nimbus revised
-# Version:
+# git version:de5689f
 # ------------------------------------------------------------
 #
+git_version=de5689f
 CUSTOMNIMBNUS=~/.nimbus
 if [[ -f "$CUSTOMNIMBNUS" ]]; then
     source ~/.nimbus
@@ -122,7 +123,7 @@ cat << EOF
 _  _ _ _  _ ___  _  _ ____    ___  _  _ ____ _  _ 
 |\ | | |\/| |__] |  | [__     |  \ |\/| |    |_/  
 | \| | |  | |__] |__| ___]    |__/ |  | |___ | \_ 
-                                                  
+ver: $git_version                                                  
 
 EOF
 
