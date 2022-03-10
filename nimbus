@@ -16,7 +16,6 @@ CUSTOMNIMBNUS=~/.nimbus
 if [[ -f "$CUSTOMNIMBNUS" ]]; then
     source ~/.nimbus
 fi
-
 home(){
     activator send libactivator.system.homebutton
     echo Home button press simulated.
@@ -108,7 +107,6 @@ unlock(){
 battery(){
     powerlog -Bq  
 }
-
 listpkg(){
     dpkg -l | more
 }
@@ -128,7 +126,6 @@ activities(){
     input   
 }
 if [ -z "$1" ]; then
-
     COLLUMN0=30
     COLLUMN1=50
     printf "\n"
@@ -136,9 +133,9 @@ if [ -z "$1" ]; then
     printf "%$((${COLLUMN0} + ${COLLUMN1}))s\n" " " | tr ' ' '-'
     printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "Action" "Description"
     printf "%$((${COLLUMN0} + ${COLLUMN1}))s\n" " " | tr ' ' '-'
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "home" "Tap home button"
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "powerdown" "Power off device"
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "sleep" "Simulate power button press"
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "home" "tap home button"
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "powerdown" "power off device"
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "sleep" "simulate power button press"
     printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "safe_mode" "launch springboard in safe mode"
     printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "switcher" "launch app switcher"
     printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "clear_switcher" "clear app switcher"
@@ -146,30 +143,27 @@ if [ -z "$1" ]; then
     printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "first_homepage" "launch first srpingboard page."
     printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "spotlight" "launch Spotlight."
     printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "screenshot" "make a screenshot."
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "increase (audio|brightness)" "increase audio or brightness."
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "decrease (audio|brightness)" "decrease audio or brightness."
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "call (answer|decline)" "answer or decline a call."
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "increase_(audio|brightness)" "increase audio or brightness."
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "decrease_(audio|brightness)" "decrease audio or brightness."
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "(answer|decline)_call" "answer or decline a call."
     printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "settings 'name of panel'" "launch settings preference"
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "power_menu" "launch power menu"
     printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "nc" "launch notification center"
     printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "cc" "launch control center."
     printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "siri" "launch siri"
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "unlock" "Unlocks unprotected interface"
-    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "battery" "Display battery information"
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "unlock" "unlocks unprotected interface"
+    printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "battery" "display battery information"
     printf "%-${COLLUMN0}s %-${COLLUMN1}s\n" "listpkg" "list installed packages"
-
     if [[ $(type -t nimbus_usage_menu) == function ]]; then
         nimbus_usage_menu
     fi
     printf "%$((${COLLUMN0} + ${COLLUMN1}))s\n" " " | tr ' ' '-'
-    printf "%$((-${COLLUMN0} + ${COLLUMN1}))s\n" "(ctrl+c|exit|quit)" 
+    printf "%$((-${COLLUMN0} + ${COLLUMN1}))s\n" "ctrl+c|exit|quit" 
     printf "%$((${COLLUMN0} + ${COLLUMN1}))s\n" " " | tr ' ' '-'
-
     input
-
 else
     activities $1 $2
 fi
-
 exit 0
 
 
