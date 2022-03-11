@@ -100,20 +100,20 @@ battery(){
 listpkg(){
     dpkg -l | more
 }
-input(){
-    read -p "action : " input
-    if [ ! -z "$input" ]; then
-        if [[ "$input" =~ ^(exit|quit)$ ]]; then
-            exit 0
-        fi 
-        activities $input
-        exit 0
-    fi   
-    input
-}
 activities(){
     $1 $2
     input   
+}
+input(){
+    while IFS="" read -r -e -d $'\n' -p 'action: ' input; do         
+        if [ ! -z "$input" ]; then
+            if [[ "$input" =~ ^(exit|quit)$ ]]; then
+                exit 0
+            fi 
+            history -s "$input"
+            activities $input             
+        fi           
+    done 
 }
 banner(){
 cat << EOF
