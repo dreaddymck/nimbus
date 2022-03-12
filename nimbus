@@ -2,6 +2,8 @@
 # nimbus revised
 # ------------------------------------------------------------
 #
+COLLUMN0=30
+COLLUMN1=50
 CUSTOMNIMBNUS=~/.nimbus
 if [[ -f "$CUSTOMNIMBNUS" ]]; then
     source ~/.nimbus
@@ -125,8 +127,7 @@ EOF
 
 }
 if [ -z "$1" ]; then
-    COLLUMN0=30
-    COLLUMN1=50
+
     banner
     printf "\n"
     printf "%$((-${COLLUMN0} + ${COLLUMN1}))s\n" "Usage: nimbus action parameter" 
