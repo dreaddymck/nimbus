@@ -106,17 +106,6 @@ activities(){
     $1 $2
     input   
 }
-input(){
-    while IFS="" read -r -e -d $'\n' -p 'action: ' input; do         
-        if [ ! -z "$input" ]; then
-            if [[ "$input" =~ ^(exit|quit)$ ]]; then
-                exit 0
-            fi 
-            history -s "$input"
-            activities $input             
-        fi           
-    done 
-}
 banner(){
 cat << EOF
 _  _ _ _  _ ___  _  _ ____    ___  _  _ ____ _  _ 
@@ -126,8 +115,8 @@ _  _ _ _  _ ___  _  _ ____    ___  _  _ ____ _  _
 EOF
 
 }
-if [ -z "$1" ]; then
-
+input(){
+    clear
     banner
     printf "\n"
     printf "%$((-${COLLUMN0} + ${COLLUMN1}))s\n" "Usage: nimbus action parameter" 
@@ -162,6 +151,18 @@ if [ -z "$1" ]; then
     printf "%$((${COLLUMN0} + ${COLLUMN1}))s\n" " " | tr ' ' '-'
     printf "%$((-${COLLUMN0} + ${COLLUMN1}))s\n" "ctrl+c|exit|quit" 
     printf "%$((${COLLUMN0} + ${COLLUMN1}))s\n" " " | tr ' ' '-'
+    while IFS="" read -r -e -d $'\n' -p 'action: ' input; do         
+        if [ ! -z "$input" ]; then
+            if [[ "$input" =~ ^(exit|quit)$ ]]; then
+                exit 0
+            fi 
+            history -s "$input"
+            activities $input             
+        fi           
+    done 
+}
+
+if [ -z "$1" ]; then
     input
 else
     activities $1 $2
