@@ -4,7 +4,7 @@
 #
 COLLUMN0=30
 COLLUMN1=40
-CUSTOMNIMBNUS=~/.nimbus_
+CUSTOMNIMBNUS=~/.nimbus
 if [[ -f "$CUSTOMNIMBNUS" ]]; then
     source ~/.nimbus
 fi
