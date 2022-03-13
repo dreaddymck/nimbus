@@ -1,10 +1,10 @@
 #!/bin/bash
-# nimbus revised
-# ------------------------------------------------------------
+# nimbus dmck
+# ------------------
 #
 COLLUMN0=30
-COLLUMN1=50
-CUSTOMNIMBNUS=~/.nimbus
+COLLUMN1=40
+CUSTOMNIMBNUS=~/.nimbus_
 if [[ -f "$CUSTOMNIMBNUS" ]]; then
     source ~/.nimbus
 fi
@@ -98,26 +98,24 @@ unlock(){
 }
 battery(){
     powerlog -Bq  
+    waitforkeypress
 }
 listpkg(){
     dpkg -l | more
+    waitforkeypress    
+}
+waitforkeypress(){
+    read -p "Press any key to continue... " -n1 -s
 }
 activities(){
     $1 $2
     input   
 }
-banner(){
-cat << EOF
-_  _ _ _  _ ___  _  _ ____    ___  _  _ ____ _  _ 
-|\ | | |\/| |__] |  | [__     |  \ |\/| |    |_/  
-| \| | |  | |__] |__| ___]    |__/ |  | |___ | \_ 
-                                                 
-EOF
-
-}
 input(){
-    clear
-    banner
+    clear    
+    if [[ $(type -t nimbus_banner) == function ]]; then
+        nimbus_banner
+    fi    
     printf "\n"
     printf "%$((-${COLLUMN0} + ${COLLUMN1}))s\n" "Usage: nimbus action parameter" 
     printf "%$((${COLLUMN0} + ${COLLUMN1}))s\n" " " | tr ' ' '-'
