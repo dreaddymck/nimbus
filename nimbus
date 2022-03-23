@@ -111,7 +111,7 @@ activities(){
     $1 $2
     input   
 }
-input(){
+menu(){
     clear    
     if [[ $(type -t nimbus_banner) == function ]]; then
         nimbus_banner
@@ -149,6 +149,9 @@ input(){
     printf "%$((${COLLUMN0} + ${COLLUMN1}))s\n" " " | tr ' ' '-'
     printf "%$((-${COLLUMN0} + ${COLLUMN1}))s\n" "ctrl+c|exit|quit" 
     printf "%$((${COLLUMN0} + ${COLLUMN1}))s\n" " " | tr ' ' '-'
+}
+input(){
+    menu
     while IFS="" read -r -e -d $'\n' -p 'action: ' input; do         
         if [ ! -z "$input" ]; then
             if [[ "$input" =~ ^(exit|quit)$ ]]; then
@@ -159,7 +162,6 @@ input(){
         fi           
     done 
 }
-
 if [ -z "$1" ]; then
     input
 else
